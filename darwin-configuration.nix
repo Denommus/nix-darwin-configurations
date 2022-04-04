@@ -39,4 +39,16 @@
   };
 
   nixpkgs.config.allowUnfree = true;
+
+  homebrew = {
+    enable = true;
+    brews = [
+      "docker"
+      "docker-compose"
+    ];
+    casks = [
+      "slack"
+    ];
+    cleanup = "zap";
+  };
 }
