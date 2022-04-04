@@ -50,6 +50,9 @@
       "slack"
       "dropbox"
     ];
+    taps = [
+      "homebrew/cask"
+    ];
     cleanup = "zap";
   };
 }
