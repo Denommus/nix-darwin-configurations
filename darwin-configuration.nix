@@ -56,4 +56,15 @@
     ];
     cleanup = "zap";
   };
+
+  fonts = {
+    enableFontDir = true;
+    fonts = with pkgs; [
+      anonymousPro
+      ubuntu_font_family
+      wqy_microhei
+      wqy_zenhei
+      ttf-tw-moe
+    ];
+  };
 }
