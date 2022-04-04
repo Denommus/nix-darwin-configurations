@@ -12,6 +12,7 @@ in {
     rustup
     rust-analyzer
     gcc
+    keepassxc
   ];
   programs.zsh = {
     enable = true;

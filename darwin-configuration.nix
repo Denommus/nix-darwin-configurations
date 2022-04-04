@@ -48,6 +48,7 @@
     ];
     casks = [
       "slack"
+      "dropbox"
     ];
     cleanup = "zap";
   };
