@@ -31,4 +31,11 @@
     experimental-features = nix-command flakes
     '';
   };
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
+  nixpkgs.config.allowUnfree = true;
 }
