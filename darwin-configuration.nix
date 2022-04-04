@@ -49,6 +49,7 @@
     casks = [
       "slack"
       "dropbox"
+      "keepassxc"
     ];
     taps = [
       "homebrew/cask"
