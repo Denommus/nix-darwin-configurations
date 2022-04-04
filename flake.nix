@@ -24,7 +24,22 @@
     darwinConfigurations."192" = darwin.lib.darwinSystem {
       inherit system;
       specialArgs = { inherit inputs; };
-      modules = [ ./darwin-configuration.nix ];
+      modules = [
+        ./darwin-configuration.nix
+        { nixpkgs.overlays = [ nur.overlay ]; }
+        home-manager.nixosModules.home-manager ({
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.yurialbuquerque = {
+              imports = [
+                ./yurialbuquerque/home.nix
+                nur-no-pkgs.repos.rycee.hmModules.emacs-init
+              ];
+            };
+          };
+        })
+      ];
     };
   };
 }
