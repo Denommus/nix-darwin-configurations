@@ -7,6 +7,7 @@
     [ vim
       emacs
       gitFull
+      gnupg
     ];
 
   # Use a custom configuration.nix location.
