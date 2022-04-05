@@ -52,6 +52,7 @@
       "keepassxc"
       "docker"
       "spotify"
+      "zoom"
     ];
     taps = [
       "homebrew/cask"
