@@ -51,6 +51,7 @@
       "dropbox"
       "keepassxc"
       "docker"
+      "spotify"
     ];
     taps = [
       "homebrew/cask"
