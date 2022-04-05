@@ -44,13 +44,13 @@
   homebrew = {
     enable = true;
     brews = [
-      "docker"
       "docker-compose"
     ];
     casks = [
       "slack"
       "dropbox"
       "keepassxc"
+      "docker"
     ];
     taps = [
       "homebrew/cask"
