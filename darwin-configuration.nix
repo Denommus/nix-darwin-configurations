@@ -69,4 +69,9 @@
       ttf-tw-moe
     ];
   };
+
+  system.keyboard = {
+    enableKeyMapping = true;
+    remapCapsLockToControl = true;
+  };
 }
