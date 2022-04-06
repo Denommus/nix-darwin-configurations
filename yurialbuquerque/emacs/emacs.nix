@@ -274,17 +274,6 @@ in
       config = "(add-hook 'org-mode-hook #'org-bullets-mode)";
     };
 
-    org-gcal = {
-      enable = true;
-      after = [ "org" ];
-      command = [
-        "org-gcal-fetch"
-        "org-gcal-post-at-point"
-        "setup-org-gcal"
-      ];
-      config = builtins.readFile ./emacs-configs/org-gcal.el;
-    };
-
     ox = {
       enable = true;
       after = [ "org" ];
