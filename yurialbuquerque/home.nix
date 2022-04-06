@@ -9,6 +9,7 @@ in {
   export EDITOR=emacsclient
   '';
   home.packages = with pkgs; [
+    myAspell
     rustup
     rust-analyzer
     gcc
