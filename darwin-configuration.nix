@@ -45,6 +45,7 @@
     enable = true;
     brews = [
       "docker-compose"
+      "awscli"
     ];
     casks = [
       "slack"
