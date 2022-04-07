@@ -48,6 +48,7 @@
       "awscli"
     ];
     casks = [
+      "element"
       "slack"
       "dropbox"
       "keepassxc"
