@@ -9,9 +9,10 @@
     nur.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
   };
 
-  outputs = { self, darwin, nixpkgs, nur, home-manager, ... }@inputs:
+  outputs = { self, darwin, nixpkgs, nur, home-manager, nixpkgs-unstable, ... }@inputs:
   let
     system = "x86_64-darwin";
     nur-no-pkgs = import nur {
@@ -26,7 +27,14 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./darwin-configuration.nix
-        { nixpkgs.overlays = [ nur.overlay ]; }
+        {
+          nixpkgs.overlays = [
+            nur.overlay
+            (final: prev: {
+              unstable = (import nixpkgs-unstable { inherit system; }).pkgs;
+            })
+          ];
+        }
         home-manager.darwinModules.home-manager ({
           home-manager = {
             useGlobalPkgs = true;
