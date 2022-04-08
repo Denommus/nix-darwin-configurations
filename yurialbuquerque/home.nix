@@ -39,4 +39,17 @@ in {
       init.defaultBranch = "main";
     };
   };
+
+  launchd.agents."setenv.PATH.plist" = {
+    enable  = true;
+    config = {
+      Label = "setenv.PATH";
+      ProgramArguments = [ "/bin/launchctl" "setenv" "PATH" "$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/etc/profiles/per-user/$USER/bin:/run/current-system/sw/bin:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin" ];
+      RunAtLoad = true;
+      EnvironmentVariables = {
+        "HOME" = "/Users/yurialbuquerque";
+        "USER" = "yurialbuquerque";
+      };
+    };
+  };
 }
