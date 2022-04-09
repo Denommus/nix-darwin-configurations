@@ -78,6 +78,7 @@ in
       "docker"
       "spotify"
       "zoom"
+      "discord"
     ];
     taps = [
       "homebrew/cask"
