@@ -79,6 +79,7 @@ in
       "spotify"
       "zoom"
       "discord"
+      "firefox"
     ];
     taps = [
       "homebrew/cask"
