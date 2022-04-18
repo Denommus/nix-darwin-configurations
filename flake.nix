@@ -21,7 +21,7 @@
       };
     };
   in {
-    darwinConfigurations."192" = darwin.lib.darwinSystem {
+    darwinConfigurations."Yuris-MacBook-Pro" = darwin.lib.darwinSystem {
       inherit system;
       specialArgs = { inherit inputs; };
       modules = [
