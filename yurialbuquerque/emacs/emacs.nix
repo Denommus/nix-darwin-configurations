@@ -37,7 +37,6 @@ in
       command = [
         "helm-mode"
       ];
-      init = builtins.readFile ./emacs-inits/helm.el;
       bind = {
         "C-c h" = "helm-command-prefix";
         "M-x" = "helm-M-x";

@@ -1,5 +1,16 @@
-{ config, pkgs, ... }:
-let myAspell = pkgs.aspellWithDicts (d: [d.en d.pt_BR]);
+{ config, pkgs, lib, ... }:
+let
+  myAspell = pkgs.aspellWithDicts (d: [d.en d.pt_BR]);
+  setUserVariables = pkgs.writeShellScript "set-user-variables" ''
+  source /etc/bashrc
+  for i in $(export); do
+      var=$(echo $i|sed 's/=.*//')
+      val=$(echo $i|sed -e 's/^[^=]*=//' -e 's/^"//' -e 's/"$//')
+      [[ $val != "" ]] && {
+         launchctl setenv $var $val
+      }
+  done
+  '';
 in {
   programs.emacs.init = import emacs/emacs.nix { inherit pkgs; };
   programs.emacs.enable = true;
@@ -40,15 +51,22 @@ in {
     };
   };
 
-  launchd.agents."setenv.PATH.plist" = {
-    enable  = true;
+  home.activation = {
+    emacsApp = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    sudo rm -rf /Applications/Emacs.app
+    sudo cp -r ${config.programs.emacs.finalPackage}/Applications/Emacs.app /Applications/Emacs.app
+    '';
+  };
+
+  launchd.agents."setuservariables.plist" = {
+    enable = true;
     config = {
-      Label = "setenv.PATH";
-      ProgramArguments = [ "/bin/launchctl" "setenv" "PATH" "$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/etc/profiles/per-user/$USER/bin:/run/current-system/sw/bin:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin" ];
+      Label = "setuservariables";
+      Program = "${setUserVariables}";
       RunAtLoad = true;
       EnvironmentVariables = {
-        "HOME" = "/Users/yurialbuquerque";
-        "USER" = "yurialbuquerque";
+        HOME = "/Users/yurialbuquerque";
+        USER = "yurialbuquerque";
       };
     };
   };
