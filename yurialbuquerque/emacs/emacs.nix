@@ -486,6 +486,11 @@ in
       init = builtins.readFile ./emacs-inits/rust-mode.el;
     };
 
+    exec-path-from-shell = {
+      enable = true;
+      config = builtins.readFile ./emacs-configs/exec-path-from-shell.el;
+    };
+
     dockerfile-mode = {
       enable = true;
     };
