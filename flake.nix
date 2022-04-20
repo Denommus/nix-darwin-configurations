@@ -1,5 +1,5 @@
 {
-  description = "John's darwin system";
+  description = "Yuri's darwin system";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-21.11-darwin";

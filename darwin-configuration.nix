@@ -88,7 +88,7 @@ in
   };
 
   fonts = {
-    enableFontDir = true;
+    fontDir.enable = true;
     fonts = with pkgs; [
       anonymousPro
       ubuntu_font_family
