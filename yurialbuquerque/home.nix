@@ -1,16 +1,6 @@
 { config, pkgs, lib, ... }:
 let
   myAspell = pkgs.aspellWithDicts (d: [d.en d.pt_BR]);
-  setUserVariables = pkgs.writeShellScript "set-user-variables" ''
-  source /etc/bashrc
-  for i in $(export); do
-      var=$(echo $i|sed 's/=.*//')
-      val=$(echo $i|sed -e 's/^[^=]*=//' -e 's/^"//' -e 's/"$//')
-      [[ $val != "" ]] && {
-         launchctl setenv $var $val
-      }
-  done
-  '';
 in {
   programs.emacs.init = import emacs/emacs.nix { inherit pkgs; };
   programs.emacs.enable = true;
@@ -57,18 +47,5 @@ in {
     cp -r ${config.programs.emacs.finalPackage}/Applications/Emacs.app /Users/yurialbuquerque/Applications/Emacs.app
     defaults write com.apple.dock ResetLaunchPad -bool true;killall Dock
     '';
-  };
-
-  launchd.agents."setuservariables.plist" = {
-    enable = true;
-    config = {
-      Label = "setuservariables";
-      Program = "${setUserVariables}";
-      RunAtLoad = true;
-      EnvironmentVariables = {
-        HOME = "/Users/yurialbuquerque";
-        USER = "yurialbuquerque";
-      };
-    };
   };
 }

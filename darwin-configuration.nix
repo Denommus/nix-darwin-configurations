@@ -1,17 +1,5 @@
 { config, pkgs, lib, ... }:
 
-let
-  setAllVariables = pkgs.writeShellScript "set-all-variables" ''
-  su yurialbuquerque -c "source /etc/bashrc"
-  for i in $(export); do
-      var=$(echo $i|sed 's/=.*//')
-      val=$(echo $i|sed -e 's/^[^=]*=//' -e 's/^"//' -e 's/"$//')
-      [[ $val != "" ]] && {
-         launchctl setenv $var $val
-      }
-  done
-  '';
-in
 {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
@@ -96,19 +84,4 @@ in
     enableKeyMapping = true;
     remapCapsLockToControl = true;
   };
-
-  environment.launchAgents."setallenv.plist".text = ''
-  <?xml version="1.0" encoding="UTF-8"?>
-  <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-  <plist version="1.0">
-  	<dict>
-  		<key>Label</key>
-  		<string>setallenv</string>
-  		<key>Program</key>
-  		<string>${setAllVariables}</string>
-  		<key>RunAtLoad</key>
-  		<true/>
-  	</dict>
-  </plist>
-  '';
 }
