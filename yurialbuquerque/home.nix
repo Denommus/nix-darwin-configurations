@@ -53,8 +53,9 @@ in {
 
   home.activation = {
     emacsApp = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    sudo rm -rf /Applications/Emacs.app
-    sudo cp -r ${config.programs.emacs.finalPackage}/Applications/Emacs.app /Applications/Emacs.app
+    rm -rf /Users/yurialbuquerque/Applications/Emacs.app
+    cp -r ${config.programs.emacs.finalPackage}/Applications/Emacs.app /Users/yurialbuquerque/Applications/Emacs.app
+    defaults write com.apple.dock ResetLaunchPad -bool true;killall Dock
     '';
   };
 
