@@ -8,10 +8,11 @@
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, darwin, nixpkgs, nur, home-manager, ... }@inputs:
+  outputs = { self, darwin, nixpkgs, nur, home-manager, nixpkgs-unstable }@inputs:
   let
     system = "x86_64-darwin";
     nur-no-pkgs = import nur {
@@ -31,6 +32,10 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
+            extraSpecialArgs = {
+              unstable-pkgs = nixpkgs-unstable.legacyPackages.x86_64-darwin;
+              inherit system;
+            };
             users.yurialbuquerque = {
               imports = [
                 ./yurialbuquerque/home.nix

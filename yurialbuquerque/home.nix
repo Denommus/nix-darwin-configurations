@@ -1,9 +1,12 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, unstable-pkgs, system, ... }:
 let
   myAspell = pkgs.aspellWithDicts (d: [d.en d.pt_BR]);
 in {
   programs.emacs.init = import emacs/emacs.nix { inherit pkgs; };
   programs.emacs.enable = true;
+  programs.emacs.package = if system == "x86_64-darwin"
+                           then unstable-pkgs.emacs28
+                           else pkgs.emacs;
   services.emacs.client.enable = true;
 
   home.sessionVariablesExtra = ''

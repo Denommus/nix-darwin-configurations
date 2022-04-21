@@ -494,5 +494,12 @@ in
     dockerfile-mode = {
       enable = true;
     };
+
+    term = {
+      enable = true;
+      bind = {
+        "s-v" = "term-paste";
+      };
+    };
   };
 }
