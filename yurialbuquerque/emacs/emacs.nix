@@ -436,6 +436,7 @@ in
         "<C-tab>" = "eyebrowse-next-window-config";
         "<C-iso-lefttab>" = "eyebrowse-prev-window-config";
         "<C-s-tab>" = "eyebrowse-prev-window-config";
+        "C-S-<tab>" = "eyebrowse-prev-window-config";
       };
       init = builtins.readFile ./emacs-inits/eyebrowse.el;
     };
