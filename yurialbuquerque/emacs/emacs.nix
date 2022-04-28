@@ -398,6 +398,11 @@ in
       init = builtins.readFile ./emacs-inits/lsp.el;
     };
 
+    lsp-haskell = {
+      enable = true;
+      after = [ "lsp-mode" ];
+    };
+
     lsp-ui = {
       enable = true;
       demand = true;
@@ -444,7 +449,8 @@ in
     haskell-mode = {
       enable = true;
       defer = true;
-      init = "(add-hook 'haskell-mode-hook #'subword-mode)";
+      after = [ "lsp-haskell" ];
+      init = builtins.readFile ./emacs-inits/haskell-mode.el;
     };
 
     helm-bbdb = {
