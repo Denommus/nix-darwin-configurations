@@ -145,3 +145,16 @@
 (winner-mode 1)
 (global-set-key (kbd "C-c f") #'winner-redo)
 (global-set-key (kbd "C-c b") #'winner-undo)
+
+(put 'nix-flake 'safe-local-variable (lambda (x) t))
+(put 'nix-file 'safe-local-variable (lambda (x) t))
+
+
+(defun nix-rust-sandbox-setup ()
+  (message "nix-flake %S" nix-flake)
+  (make-local-variable 'lsp-rust-rls-server-command)
+  (setq lsp-rust-rls-server-command (nix-shell-command (nix-current-sandbox) "rls"))
+  (make-local-variable 'lsp-rust-analyzer-server-command)
+  (setq lsp-rust-analyzer-server-command (nix-shell-command (nix-current-sandbox) "rust-analyzer"))
+  (lsp))
+

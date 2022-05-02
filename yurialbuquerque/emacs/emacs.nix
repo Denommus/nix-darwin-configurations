@@ -96,11 +96,12 @@ in
         "nix-executable-find"
         "nix-shell-command"
       ];
+      after = [ "nix-mode" ];
       package = (epkgs: epkgs.nix-sandbox.overrideAttrs (old: {
         patches = (old.patches or []) ++ [
           (pkgs.fetchpatch {
-            url = "https://github.com/Denommus/nix-emacs/commit/8b27194030601e166851a3458a970feca3c49553.patch";
-            sha256 = "sha256-ai/fIAF8glZ4ND2ubG6z3seP9c5G5HhCRgLMr30AnH0=";
+            url = "https://github.com/Denommus/nix-emacs/commit/0d168c54bf18f994be83f76ea1ed75efbfb18415.patch";
+            sha256 = "sha256-4SMZOpDJzE3982OinI6P6WB0KpftDwdc8GiJUCn/bKM=";
           })
         ];
       }));
@@ -219,6 +220,7 @@ in
 
     magit-svn = {
       enable = true;
+      command = [ "magit-svn-mode" ];
       after = [ "magit" ];
     };
 
@@ -334,6 +336,7 @@ in
 
     nix-mode = {
       enable = true;
+      demand = true;
     };
 
     nixos-options = {
@@ -382,7 +385,6 @@ in
       enable = true;
       command = [
         "lsp"
-        "sandboxed-rust-lsp"
       ];
       bindLocal = {
         lsp-mode-map = {
@@ -449,7 +451,7 @@ in
     haskell-mode = {
       enable = true;
       defer = true;
-      after = [ "lsp-haskell" ];
+      after = [ "lsp-haskell" "nix-sandbox" ];
       init = builtins.readFile ./emacs-inits/haskell-mode.el;
     };
 
@@ -489,8 +491,11 @@ in
 
     rust-mode = {
       enable = true;
-      after = [ "nix-sandbox" "lsp-mode" ];
-      init = builtins.readFile ./emacs-inits/rust-mode.el;
+      after = [ "nix-sandbox" "lsp-mode" "nix-mode" ];
+      command = [ "nix-rust-sandbox-setup" ];
+      hook = [
+        "(rust-mode . nix-rust-sandbox-setup)"
+      ];
     };
 
     exec-path-from-shell = {
