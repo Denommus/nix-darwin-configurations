@@ -156,5 +156,6 @@
   (setq lsp-rust-rls-server-command (nix-shell-command (nix-current-sandbox) "rls"))
   (make-local-variable 'lsp-rust-analyzer-server-command)
   (setq lsp-rust-analyzer-server-command (nix-shell-command (nix-current-sandbox) "rust-analyzer"))
+  (setq lsp-rust-analyzer-proc-macro-enable t)
   (lsp))
 
