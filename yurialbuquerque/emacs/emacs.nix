@@ -513,5 +513,14 @@ in
         "s-v" = "term-paste";
       };
     };
+
+    string-inflection = {
+      enable = true;
+      demand = true;
+      bind = {
+        "C-c C" = "string-inflection-camelcase";
+        "C-c L" = "string-inflection-lower-camelcase";
+      };
+    };
   };
 }
