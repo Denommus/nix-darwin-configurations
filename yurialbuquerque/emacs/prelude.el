@@ -6,7 +6,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 110 :family "Anonymous Pro"))))
+ '(default ((t (:height 110 :family "Fira Code"))))
  '(font-lock-comment-face ((t (:foreground "#B7B7B7")))))
 (setq history-delete-duplicates t)
 (setq create-lockfiles nil)

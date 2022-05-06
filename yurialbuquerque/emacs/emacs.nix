@@ -522,5 +522,11 @@ in
         "C-c L" = "string-inflection-lower-camelcase";
       };
     };
+
+    fira-code-mode = {
+      enable = true;
+      demand = true;
+      init = "(global-fira-code-mode)";
+    };
   };
 }

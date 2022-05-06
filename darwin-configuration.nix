@@ -72,6 +72,8 @@
       wqy_microhei
       wqy_zenhei
       ttf-tw-moe
+      fira-code
+      fira-code-symbols
     ];
   };
 
