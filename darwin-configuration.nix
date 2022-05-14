@@ -44,6 +44,8 @@
   homebrew = {
     enable = true;
     brews = [
+      "libiconv"
+      "pkg-config"
       "docker-compose"
       "awscli"
     ];

@@ -16,7 +16,6 @@ in {
     myAspell
     rustup
     rust-analyzer
-    gcc
   ];
   programs.zsh = {
     enable = true;
