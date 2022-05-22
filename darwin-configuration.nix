@@ -45,9 +45,11 @@
     enable = true;
     brews = [
       "libiconv"
+      "libgit2"
       "pkg-config"
       "docker-compose"
       "awscli"
+      "libpq"
     ];
     casks = [
       "element"
