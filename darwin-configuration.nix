@@ -61,6 +61,7 @@
       "zoom"
       "discord"
       "firefox"
+      "epic-games"
     ];
     taps = [
       "homebrew/cask"
