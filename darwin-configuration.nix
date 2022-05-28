@@ -62,6 +62,7 @@
       "discord"
       "firefox"
       "epic-games"
+      "streamlabs-obs"
     ];
     taps = [
       "homebrew/cask"
