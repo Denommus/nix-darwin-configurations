@@ -1,0 +1,5 @@
+* DEPRECATED
+
+I've merged my nix-darwin-configurations with my [[https://github.com/Denommus/nix-configurations/][NixOS configurations]]
+in the same repository. If you want to use my configurations use the
+instructions from that repo.
